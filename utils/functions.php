@@ -9,6 +9,6 @@ function Dump_Die($value)
     die();
 }
 
-function isActiveUrl($url) {
+function isActiveUrl($url) : bool {
     return $_SERVER['REQUEST_URI'] === $url;
 }
