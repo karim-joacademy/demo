@@ -1,22 +1,17 @@
 <?php
 
-$config = require "utils/config.php";
+$config = require "./utils/config.php";
 $db = new Database($config["database"]);
-
+$id = $_GET["id"];
 $name = "Note";
+try
+{
+    $note = $db->query('select * from notes where id = ' . $id)->fetch();
+}
+catch (Exception $e)
+{
+    die($e);
+}
 
-$noteId = $_GET["id"];
-
-$currentUserId = 1;
-
-$query = "SELECT * FROM notes WHERE user_id = : user_id AND id = :note_id";
-
-// Execute the query with the parameters correctly bound
-$note = $db->query($query, [
-    "user_id" => $currentUserId,
-    "note_id" => $noteId
-])->fetch();
-
-echo "hello";
-require("views/notes/show.view.php");
+require("./views/notes/show.view.php");
 
