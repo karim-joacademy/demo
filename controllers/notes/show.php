@@ -2,8 +2,11 @@
 
 $config = require "./utils/config.php";
 $db = new Database($config["database"]);
-$id = $_GET["id"];
+
+$currentUserId = 1;
 $name = "Note";
+
+$id = $_GET["id"];
 
 $note = $db->query('select * from notes where id = ' . $id)->fetch();
 
@@ -11,11 +14,10 @@ if(!$note)
 {
     abort();
 }
-$currentUserId = 1;
 
-if($note['user_id'] != 1)
+if($note['user_id'] !== $currentUserId)
 {
-    abort(403);
+    abort(Response::FORBIDDEN);
 }
 
 require("./views/notes/show.view.php");

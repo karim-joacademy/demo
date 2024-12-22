@@ -9,7 +9,7 @@
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="/" class="<?= defaultClasses() . getNavLinkClass("/") ?>">Home</a>
                         <a href="/about" class="<?= defaultClasses() . getNavLinkClass("/about") ?>">About</a>
-                        <a href="/notes" class="<?= defaultClasses() . getNavLinkClass("/index") ?>">Notes</a>
+                        <a href="/notes" class="<?= defaultClasses() . getNavLinkClass("/notes") ?>">Notes</a>
                         <a href="/contact" class="<?= defaultClasses() . getNavLinkClass("/contact") ?>">Contacts</a>
                     </div>
                 </div>
