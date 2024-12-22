@@ -4,13 +4,18 @@ $config = require "./utils/config.php";
 $db = new Database($config["database"]);
 $id = $_GET["id"];
 $name = "Note";
-try
+
+$note = $db->query('select * from notes where id = ' . $id)->fetch();
+
+if(!$note)
 {
-    $note = $db->query('select * from notes where id = ' . $id)->fetch();
+    abort();
 }
-catch (Exception $e)
+$currentUserId = 1;
+
+if($note['user_id'] != 1)
 {
-    die($e);
+    abort(403);
 }
 
 require("./views/notes/show.view.php");
