@@ -6,9 +6,9 @@ $db = new Database($config["database"]);
 $currentUserId = 1;
 $name = "Note";
 
-$id = $_GET["id"];
-
-$note = $db->query('select * from notes where id = ' . $id)->fetch();
+$note = $db->query('select * from notes where id = :id', [
+    "id" => $_GET["id"]
+])->fetch();
 
 if(!$note)
 {
