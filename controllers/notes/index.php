@@ -5,10 +5,13 @@ $db = new Database($config["database"]);
 
 $name = "Notes";
 
-try {
+try
+{
     $getAllNotesQuery = "SELECT * FROM notes WHERE user_id = 1";
-    $notes = $db->query($getAllNotesQuery)->fetchAll();
-} catch (Exception $e) {
+    $notes = $db->query($getAllNotesQuery)->findAll();
+}
+catch (Exception $e)
+{
     die("An error occurred while fetc   hing the notes: " . $e->getMessage());
 }
 
