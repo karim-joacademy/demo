@@ -1,18 +1,12 @@
 <?php
 
-$config = require "./utils/config.php";
-$db = new Database($config["database"]);
+use Core\App;
+use Core\Database;
 
-$name = "Notes";
+$db = App::resolve(Database::class);
+$notes = $db->query('select * from notes where user_id = 1')->get();
 
-try
-{
-    $getAllNotesQuery = "SELECT * FROM notes WHERE user_id = 1";
-    $notes = $db->query($getAllNotesQuery)->findAll();
-}
-catch (Exception $e)
-{
-    die("An error occurred while fetc   hing the notes: " . $e->getMessage());
-}
-
-require("./views/notes/index.view.php");
+view("notes/index.view.php", [
+    'heading' => 'My Notes',
+    'notes' => $notes
+]);
